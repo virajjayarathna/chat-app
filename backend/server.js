@@ -1,10 +1,25 @@
-const express = require('express');
+import express from 'express';
+import dotenv from 'dotenv';
+
+import authRoutes from './routes/auth.routes.js';
+import connectToMongoDB from './db/connectToMongoDB.js';
+
+
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
+dotenv.config();
+// Middleware
+app.use(express.json()); // to parse the incoming JSON  payloads from   req.body
+app.use('/api/auth', authRoutes);
+
+// app.get('/', (req, res) => {
+//     res.send('Hello World');
+// });
+
+app.listen(PORT, () => {
+    connectToMongoDB();
+    console.log(`Listening on port ${PORT}`);
 });
-
-app.listen(5000, () => console.log('listening on port 5000'));
-
+    
 
