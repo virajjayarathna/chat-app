@@ -70,7 +70,8 @@ export const login = async (req, res) => {
             fullname: user.fullname, 
             username: user.username, 
             gender: user.gender, 
-            profilePic: user.profilePic 
+            profilePic: user.profilePic,
+            message: "successfully logged in"
         });
         
     } catch (error) {
